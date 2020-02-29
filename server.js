@@ -157,8 +157,7 @@ router.route('/movies')
         //update the json object in the request
         res.json(putJSONObject(req));
     })
-    .delete( function (req, res) {
-
+    .delete(authController.isAuthenticated, function (req, res) {
 
         //output the request to server console
         console.log(req.body);
