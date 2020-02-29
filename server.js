@@ -32,7 +32,8 @@ function getJSONObject(req) {
         json.body = req.body;
     }
 
-    console.log(jsonRequestData.q)
+    console.log(req.body)
+    //console.log(jsonRequestData.q)
 
     //set json headers
     if (req.headers != null) {
