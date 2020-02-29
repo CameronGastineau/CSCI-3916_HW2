@@ -21,6 +21,8 @@ function getJSONObject(req) {
     //parse the request as JSON data to find the query
     //git add var jsonRequestData = JSON.parse(req.body);
 
+    var query = "test query"
+
     var json = {
         headers : "No Headers",
         key: process.env.UNIQUE_KEY,
@@ -37,7 +39,7 @@ function getJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = req.headers;
+        json.headers = "headers: ${req.headers}, query: $(query)";
         //json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
     }
 
