@@ -19,7 +19,7 @@ var router = express.Router();
 
 function getJSONObject(req) {
     //parse the request as JSON data to find the query
-    var jsonRequestData = JSON.parse(req);
+    var jsonRequestData = JSON.parse(req.body);
 
     var json = {
         headers : "No Headers",
@@ -36,86 +36,87 @@ function getJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
+        json.headers = req.headers;
+        //json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
     }
 
     return json;
 }
 
-function postJSONObject(req) {
-    //parse the request as JSON data to find the values to post
-    var jsonRequestData = JSON.parse(req);
-
-    var json = {
-        headers : "No Headers",
-        key: process.env.UNIQUE_KEY,
-        body : "No Body",
-    };
-
-    //Set json body
-    if (req.body != null) {
-        json.body = req.body;
-    }
-
-    console.log(jsonRequestData.q)
-
-    //set json headers
-    if (req.headers != null) {
-        json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
-    }
-
-    return json;
-}
-
-function putJSONObject(req) {
-    //parse the request as JSON data to find the values to post
-    var jsonRequestData = JSON.parse(req);
-
-    var json = {
-        headers : "No Headers",
-        key: process.env.UNIQUE_KEY,
-        body : "No Body",
-    };
-
-    //Set json body
-    if (req.body != null) {
-        json.body = req.body;
-    }
-
-    console.log(jsonRequestData.q)
-
-    //set json headers
-    if (req.headers != null) {
-        json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
-    }
-
-    return json;
-}
-
-function deleteJSONObject(req) {
-    //parse the request as JSON data to find the values to post
-    var jsonRequestData = JSON.parse(req);
-
-    var json = {
-        headers : "No Headers",
-        key: process.env.UNIQUE_KEY,
-        body : "No Body",
-    };
-
-    //Set json body
-    if (req.body != null) {
-        json.body = req.body;
-    }
-
-    console.log(jsonRequestData.q)
-
-    //set json headers
-    if (req.headers != null) {
-        json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
-    }
-
-    return json;
-}
+// function postJSONObject(req) {
+//     //parse the request as JSON data to find the values to post
+//     var jsonRequestData = JSON.parse(req);
+//
+//     var json = {
+//         headers : "No Headers",
+//         key: process.env.UNIQUE_KEY,
+//         body : "No Body",
+//     };
+//
+//     //Set json body
+//     if (req.body != null) {
+//         json.body = req.body;
+//     }
+//
+//     console.log(jsonRequestData.q)
+//
+//     //set json headers
+//     if (req.headers != null) {
+//         json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
+//     }
+//
+//     return json;
+// }
+//
+// function putJSONObject(req) {
+//     //parse the request as JSON data to find the values to post
+//     var jsonRequestData = JSON.parse(req);
+//
+//     var json = {
+//         headers : "No Headers",
+//         key: process.env.UNIQUE_KEY,
+//         body : "No Body",
+//     };
+//
+//     //Set json body
+//     if (req.body != null) {
+//         json.body = req.body;
+//     }
+//
+//     console.log(jsonRequestData.q)
+//
+//     //set json headers
+//     if (req.headers != null) {
+//         json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
+//     }
+//
+//     return json;
+// }
+//
+// function deleteJSONObject(req) {
+//     //parse the request as JSON data to find the values to post
+//     var jsonRequestData = JSON.parse(req);
+//
+//     var json = {
+//         headers : "No Headers",
+//         key: process.env.UNIQUE_KEY,
+//         body : "No Body",
+//     };
+//
+//     //Set json body
+//     if (req.body != null) {
+//         json.body = req.body;
+//     }
+//
+//     console.log(jsonRequestData.q)
+//
+//     //set json headers
+//     if (req.headers != null) {
+//         json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
+//     }
+//
+//     return json;
+// }
 
 router.route('/movies')
     .get( function (req, res) {
@@ -136,61 +137,61 @@ router.route('/movies')
 
         //get the requested item and return it
         res.json(getJSONObject(req));
-    })
-    .post(function (req, res) { //no auth needed for this - based on requirements...
-        //output the request to server console
-        console.log(req.body);
-
-        //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
-        res = res.status(200);
-
-        if (req.get('Content-Type')) {
-            console.log("Content-Type: " + req.get('Content-Type'));
-            res = res.type(req.get('Content-Type'));
-        }
-
-        //message for post is "movie saved"
-        res.message = "movie saved";
-
-        //post the json object in the request
-        res.json(postJSONObject(req));
-    })
-    .put(authJwtController.isAuthenticated, function (req, res) {
-        //output the request to server console
-        console.log(req.body);
-
-        //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
-        res = res.status(200);
-
-        if (req.get('Content-Type')) {
-            console.log("Content-Type: " + req.get('Content-Type'));
-            res = res.type(req.get('Content-Type'));
-        }
-
-        //message for post is "movie updated"
-        res.message = "movie updated";
-
-        //update the json object in the request
-        res.json(putJSONObject(req));
-    })
-    .delete(authJwtController.isAuthenticated, function (req, res) {
-        //output the request to server console
-        console.log(req.body);
-
-        //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
-        res = res.status(200);
-
-        if (req.get('Content-Type')) {
-            console.log("Content-Type: " + req.get('Content-Type'));
-            res = res.type(req.get('Content-Type'));
-        }
-
-        //message for post is "movie deleted"
-        res.message = "movie deleted";
-
-        //update the json object in the request
-        res.json(deleteJSONObject(req));
     });
+    // .post(function (req, res) { //no auth needed for this - based on requirements...
+    //     //output the request to server console
+    //     console.log(req.body);
+    //
+    //     //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
+    //     res = res.status(200);
+    //
+    //     if (req.get('Content-Type')) {
+    //         console.log("Content-Type: " + req.get('Content-Type'));
+    //         res = res.type(req.get('Content-Type'));
+    //     }
+    //
+    //     //message for post is "movie saved"
+    //     res.message = "movie saved";
+    //
+    //     //post the json object in the request
+    //     res.json(postJSONObject(req));
+    // })
+    // .put(authJwtController.isAuthenticated, function (req, res) {
+    //     //output the request to server console
+    //     console.log(req.body);
+    //
+    //     //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
+    //     res = res.status(200);
+    //
+    //     if (req.get('Content-Type')) {
+    //         console.log("Content-Type: " + req.get('Content-Type'));
+    //         res = res.type(req.get('Content-Type'));
+    //     }
+    //
+    //     //message for post is "movie updated"
+    //     res.message = "movie updated";
+    //
+    //     //update the json object in the request
+    //     res.json(putJSONObject(req));
+    // })
+    // .delete(authJwtController.isAuthenticated, function (req, res) {
+    //     //output the request to server console
+    //     console.log(req.body);
+    //
+    //     //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
+    //     res = res.status(200);
+    //
+    //     if (req.get('Content-Type')) {
+    //         console.log("Content-Type: " + req.get('Content-Type'));
+    //         res = res.type(req.get('Content-Type'));
+    //     }
+    //
+    //     //message for post is "movie deleted"
+    //     res.message = "movie deleted";
+    //
+    //     //update the json object in the request
+    //     res.json(deleteJSONObject(req));
+    // });
 
 router.route('/post')
     .post(authController.isAuthenticated, function (req, res) {
