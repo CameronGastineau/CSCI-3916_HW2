@@ -19,10 +19,10 @@ var router = express.Router();
 
 function getJSONObject(req) {
     //parse the request as JSON data to find the query
-    const testJSON = '{ "query": "test query in javascript" }';
-    var jsonRequestData = JSON.parse(req.body);
+    //const testJSON = '{ "query": "test query in javascript" }';
+    //var jsonRequestData = JSON.parse(req.body);
 
-    console.log(jsonRequestData);
+    console.log(req.body.q);
 
     var query = "test query"
 
