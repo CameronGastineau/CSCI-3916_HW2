@@ -103,12 +103,10 @@ router.route('/movies')
         console.log(req.body);
 
         //At the moment, status is always 200 if we get into this object. Later, we'll need to add validation.
-        //res = res.status(200);
-
-        res.writeHead(200, {'Message': 'GET movies'});
+        res = res.status(200);
 
         //message for a get is "GET movies"
-        res.message = "GET movies";
+        res.setHeader("Message", "GET movies");
 
         //if the request has a content-type, output it and set response content-type to the same
         if (req.get('Content-Type')) {
