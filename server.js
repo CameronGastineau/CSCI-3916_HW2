@@ -6,8 +6,10 @@ var authController = require('./auth');
 var authJwtController = require('./auth_jwt');
 db = require('./db')(); //global hack
 var jwt = require('jsonwebtoken');
+var cors = require('cors');
 
 var app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -19,7 +21,7 @@ function getJSONObject(req) {
     var json = {
         headers : "No Headers",
         key: process.env.UNIQUE_KEY,
-        body : "No Body"
+        body : "No Body",
     };
 
     if (req.body != null) {
@@ -44,6 +46,25 @@ router.route('/post')
             res.json(o);
         }
     );
+
+router.route('/movies')
+    .post(authJwtController.isAuthenticated, function (req, res) {
+            console.log(req.body);
+            res = res.status(200); //should return status 200
+            res.message = "movie saved"
+            if (req.get('Content-Type')) {
+                console.log("Content-Type: " + req.get('Content-Type'));
+                res = res.type(req.get('Content-Type'));
+            }
+            res.json(req.body); ///modify this for the movies thing....
+        }
+    );
+
+// router.route('/movies')
+//     .put(authJwtController.isAuthenticated, function(req, res) {
+//
+//         }
+//     );
 
 router.route('/postjwt')
     .post(authJwtController.isAuthenticated, function (req, res) {

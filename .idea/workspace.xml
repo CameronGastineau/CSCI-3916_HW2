@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,13 +55,30 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="Register, Login and check token" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/test/post.js</test-file>
+      <test-names>
+        <name value="Register, Login and check token" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Node.js.server.js" />
       <item itemvalue="npm.test" />
+      <item itemvalue="Mocha.Register, Login and check token" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Mocha.Register, Login and check token" />
         <item itemvalue="npm.test" />
       </list>
     </recent_temporary>
@@ -83,7 +101,9 @@
       <workItem from="1550105398207" duration="557000" />
       <workItem from="1581381509081" duration="778000" />
       <workItem from="1581552231684" duration="4000" />
-      <workItem from="1581552442518" duration="1608000" />
+      <workItem from="1581552442518" duration="2096000" />
+      <workItem from="1582588331986" duration="1302000" />
+      <workItem from="1582929941519" duration="4414000" />
     </task>
     <servers />
   </component>
@@ -99,35 +119,37 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="574" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1581552837850" />
-    <state width="1659" height="227" key="GridCell.Tab.0.bottom" timestamp="1581553617056">
+    <state width="1659" height="450" key="GridCell.Tab.0.bottom" timestamp="1582934967488">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1659" height="227" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581553617056" />
-    <state width="1659" height="227" key="GridCell.Tab.0.center" timestamp="1581553617054">
+    <state width="1659" height="450" key="GridCell.Tab.0.bottom/0.0.1680.1050/1680.62.1366.1024@0.0.1680.1050" timestamp="1582934967488" />
+    <state width="1345" height="450" key="GridCell.Tab.0.bottom/0.0.1680.1050/1680.62.1366.1024@1680.62.1366.1024" timestamp="1582931932374" />
+    <state width="1659" height="227" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581565289576" />
+    <state width="1659" height="450" key="GridCell.Tab.0.center" timestamp="1582934967486">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1659" height="227" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581553617054" />
-    <state width="1659" height="227" key="GridCell.Tab.0.left" timestamp="1581553617053">
+    <state width="1659" height="450" key="GridCell.Tab.0.center/0.0.1680.1050/1680.62.1366.1024@0.0.1680.1050" timestamp="1582934967486" />
+    <state width="1345" height="450" key="GridCell.Tab.0.center/0.0.1680.1050/1680.62.1366.1024@1680.62.1366.1024" timestamp="1582931932372" />
+    <state width="1659" height="227" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581565289575" />
+    <state width="1659" height="450" key="GridCell.Tab.0.left" timestamp="1582934967485">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1659" height="227" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581553617053" />
-    <state width="1659" height="227" key="GridCell.Tab.0.right" timestamp="1581553617055">
+    <state width="1659" height="450" key="GridCell.Tab.0.left/0.0.1680.1050/1680.62.1366.1024@0.0.1680.1050" timestamp="1582934967485" />
+    <state width="1345" height="450" key="GridCell.Tab.0.left/0.0.1680.1050/1680.62.1366.1024@1680.62.1366.1024" timestamp="1582931932371" />
+    <state width="1659" height="227" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581565289574" />
+    <state width="1659" height="450" key="GridCell.Tab.0.right" timestamp="1582934967487">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1659" height="227" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581553617055" />
+    <state width="1659" height="450" key="GridCell.Tab.0.right/0.0.1680.1050/1680.62.1366.1024@0.0.1680.1050" timestamp="1582934967487" />
+    <state width="1345" height="450" key="GridCell.Tab.0.right/0.0.1680.1050/1680.62.1366.1024@1680.62.1366.1024" timestamp="1582931932373" />
+    <state width="1659" height="227" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581565289575" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server.js</url>
-          <line>49</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/auth.js</url>
           <line>7</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
