@@ -17,6 +17,7 @@ app.use(passport.initialize());
 
 var router = express.Router();
 
+//below function duplicated for get..., post..., put..., delete... because we'll eventually need to do more than just create JSON object and return
 function getJSONObject(req) {
     var json = {
         headers : "No Headers",
@@ -31,12 +32,13 @@ function getJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = { headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
+        json.headers = { status: 200, message: "GET movies", headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
     }
 
     return json;
 }
 
+//below function duplicated for get..., post..., put..., delete... because we'll eventually need to do more than just create JSON object and return
 function postJSONObject(req) {
     var json = {
         headers : "No Headers",
@@ -51,12 +53,13 @@ function postJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = { headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
+        json.headers = { status: 200, message: "movie saved", headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
     }
 
     return json;
 }
 
+//below function duplicated for get..., post..., put..., delete... because we'll eventually need to do more than just create JSON object and return
 function putJSONObject(req) {
     var json = {
         headers : "No Headers",
@@ -71,12 +74,13 @@ function putJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = { headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
+        json.headers = { status: 200, message: "movie updated", headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
     }
 
     return json;
 }
 
+//below function duplicated for get..., post..., put..., delete... because we'll eventually need to do more than just create JSON object and return
 function deleteJSONObject(req) {
     var json = {
         headers : "No Headers",
@@ -91,7 +95,7 @@ function deleteJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = { headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
+        json.headers = { status: 200, message: "movie deleted", headers: req.headers, query: req.body.q, env: process.env.UNIQUE_KEY };
     }
 
     return json;
@@ -130,7 +134,7 @@ router.route('/movies')
         }
 
         //message for post is "movie saved"
-        res.message = "movie saved";
+        res.setHeader("Message", "movie saved");
 
         //post the json object in the request
         res.json(postJSONObject(req));
@@ -148,12 +152,14 @@ router.route('/movies')
         }
 
         //message for post is "movie updated"
-        res.message = "movie updated";
+        res.setHeader("Message", "movie updated");
 
         //update the json object in the request
         res.json(putJSONObject(req));
     })
-    .delete(authJwtController.isAuthenticated, function (req, res) {
+    .delete(authController.isAuthenticated, function (req, res) {
+
+
         //output the request to server console
         console.log(req.body);
 
@@ -166,7 +172,7 @@ router.route('/movies')
         }
 
         //message for post is "movie deleted"
-        res.message = "movie deleted";
+        res.setHeader("Message", "movie deleted");
 
         //update the json object in the request
         res.json(deleteJSONObject(req));
