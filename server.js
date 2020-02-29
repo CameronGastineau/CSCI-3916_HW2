@@ -39,7 +39,7 @@ function getJSONObject(req) {
 
     //set json headers
     if (req.headers != null) {
-        json.headers = "headers: ${req.headers}, query: $(query)";
+        json.headers = { headers: req.headers, query: query };
         //json.headers = "headers: ${req.headers}, query: ${jsonRequestData.q}, env: ${process.env.UNIQUE_KEY}";
     }
 
